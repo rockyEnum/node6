@@ -19,7 +19,6 @@
             <td>{{book.price}}</td>
         </tr>
     </table>
-    <input type="text" ng-model="query" ng-change="getOne()">
     <div class="form-group">
         <label class="control-label">书的名字</label>
         <input type="text" ng-model="list.name" class="form-control">
@@ -27,7 +26,6 @@
     <div class="form-group">
         <label class="control-label">书的数量</label>
         <input type="text" ng-model="list.count" class="form-control">
-
     </div>
     <div class="form-group">
         <label class="control-label">书的价格</label>
@@ -38,41 +36,6 @@
 <script src="angular.js"></script>
 <script>
     var app = angular.module('zfModule',[]);
-    //构建服务
-    app.factory('my',function ($http) {
-        function book(){
-            var books;
-            return $http({
-                url:'/books',
-                method:'GET'
-            })
-        }
-        return {
-            getBook: function () {
-                return book()
-            }
-        }
-    });
-    app.controller('ctrl', function ($scope,my) {
-        my.getBook().then(function (data) {
-            console.log(data.data);
-            $scope.books =data.data
-        })
-    });
-
-
-
-    /*查询一本书 /book
-    查询一组书 /books
-    保存一本书 /save
-    删除一本书 /remove
-
-    /book/1   'GET' 查询1本书
-    /book     'GET' 查询所有书
-    /book     'POST'增加一本书
-    /book/1   'put' 修改一本书
-    /book/1   'delete'删除一本书*/
-
 </script>
 </body>
 </html>
